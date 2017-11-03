@@ -9,14 +9,17 @@
 #ifndef _GENERIC_TYPES_H
 #define _GENERIC_TYPES_H
 
-#define S32				unsigned int
-#define U32				int
+#define S32				int
+#define U32				unsigned int
 #define U8				unsigned char
 #define S8				char
 #define BOOL			unsigned char
+#define TRUE			(BOOL)(1)
+#define FALSE			(BOOL)(0)
+#define NULL			(0)
 
-#define SUCCESS			(1)
-#define FAILURE			(-1)
+#define SUCCESS			(S32)(1)
+#define FAILURE			(S32)(-1)
 
 
 #endif

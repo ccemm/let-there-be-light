@@ -21,6 +21,10 @@
   */
 S32 drvInitPlatform(void)
 {
-	//
-	return 0;
+	S32 retVal = SUCCESS;
+	// Configure Clock
+	// Set the clocking to run directly from the crystal.
+	SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+			SYSCTL_XTAL_16MHZ);
+	return retVal;
 }

@@ -2,7 +2,7 @@
  *
  * Default Linker script for the Texas Instruments TM4C123GH6PM
  *
- * This is derived from revision 15071 of the TivaWare Library.
+ * This is derived from revision 12770 of the TivaWare Library.
  *
  *****************************************************************************/
 
@@ -24,8 +24,8 @@ SECTIONS {
 
     PROVIDE (_intvecs_base_address = 0x0);
 
-    .intvecs (_intvecs_base_address) : AT (_intvecs_base_address) {
-        KEEP (*(.intvecs))
+    .isr_vector (_intvecs_base_address) : AT (_intvecs_base_address) {
+        KEEP (*(.isr_vector))
     } > REGION_TEXT
 
     PROVIDE (_vtable_base_address = 0x20000000);
@@ -36,7 +36,7 @@ SECTIONS {
 
     .text : {
         CREATE_OBJECT_SYMBOLS
-        *(.text)
+        KEEP (*(.text))
         *(.text.*)
         . = ALIGN(0x4);
         KEEP (*(.ctors))
@@ -62,8 +62,8 @@ SECTIONS {
     .data : ALIGN (4) {
         __data_load__ = LOADADDR (.data);
         __data_start__ = .;
-        *(.data)
-        *(.data*)
+        KEEP (*(.data))
+        KEEP (*(.data*))
         . = ALIGN (4);
         __data_end__ = .;
     } > REGION_DATA AT> REGION_TEXT
@@ -81,7 +81,7 @@ SECTIONS {
     .bss : {
         __bss_start__ = .;
         *(.shbss)
-        *(.bss)
+        KEEP (*(.bss))
         *(.bss.*)
         *(COMMON)
         . = ALIGN (4);

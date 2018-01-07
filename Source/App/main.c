@@ -11,6 +11,7 @@
 #include "drvTimers.h"
 #include "drvLeds.h"
 #include "drvPshButtons.h"
+#include "drvUart.h"
 #include "hw_types.h"
 #include "hw_gpio.h"
 #include "gpio.h"
@@ -68,6 +69,15 @@ static void clicCallBack(BtnEvent btnEvt)
 {
 	lastBntEvt = btnEvt;
 	SET_EVT_FLAG(eventsReg,EVT_BTN);
+}
+
+static void uartRcvCallBack()
+{
+	U8 buf[128];
+	U32 len =0;
+	// ToDo: Echo Back For Now 
+	drvUARTRcv(buf, &len);
+	drvUARTSend(buf,len);
 }
 
 static S32 initTimer(void)
@@ -171,6 +181,9 @@ int main(void)
 {
 	initDrivers();
 	appStateInit();
+
+	drvUARTInit(uartRcvCallBack);
+
 	while(1)
 	{
 		loopApp(&appLoop);

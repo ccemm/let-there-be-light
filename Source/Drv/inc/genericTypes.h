@@ -9,6 +9,8 @@
 #ifndef _GENERIC_TYPES_H
 #define _GENERIC_TYPES_H
 
+#include "stdint.h"
+
 #define S32				int
 #define U32				unsigned int
 #define U8				unsigned char

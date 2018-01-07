@@ -17,6 +17,9 @@
 #include "tm4c123gh6pm.h"
 #include "sysctl.h"
 
+#define UART_BUFFER_SIZE		1024		// UART Rcv and Transmit Buffer Size
+#define RING_BUFFER_MAX  		2		// Max Ring Buffer Number
+
 typedef enum _LedBlinkMode
 {
 	LED_BLNK_NONE =0,

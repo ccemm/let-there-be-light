@@ -10,11 +10,11 @@
 
 #if PART_TM4C123GH6PM
 	#include "hw_uart.h"
+	#include "drvConfig.h"
 	#include "uart.h"
-
 #endif
-
 #include "drvConfig.h"
+
 
 
 typedef  void(*UartRcvDataAvlblCallBack)(void);

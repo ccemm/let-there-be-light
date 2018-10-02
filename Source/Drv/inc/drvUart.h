@@ -8,9 +8,14 @@
 #ifndef DRV_UART_H
 #define DRV_UART_H
 
-#include "hw_uart.h"
+#if PART_TM4C123GH6PM
+	#include "hw_uart.h"
+	#include "uart.h"
+
+#endif
+
 #include "drvConfig.h"
-#include "uart.h"
+
 
 typedef  void(*UartRcvDataAvlblCallBack)(void);
 

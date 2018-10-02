@@ -12,9 +12,14 @@
 #include "drvLeds.h"
 #include "drvPshButtons.h"
 #include "drvUart.h"
+#include "drvDebug.h"
+
+#if PART_TM4C123GH6PM
 #include "hw_types.h"
 #include "hw_gpio.h"
 #include "gpio.h"
+
+#endif
 
 #include "middStateMngr.h"
 #include "appStates.h"
@@ -48,7 +53,7 @@ static void loopTimeTick(void);
 static void loopOnBtnEvt(BtnEvent bntEvt);
 /* Private variables ---------------------------------------------------------*/
 static TimerNum timer1Ms = INV_TIMER_NUM;
-volatile static BtnEvent lastBntEvt = {-1,PRESS_END};
+static BtnEvent lastBntEvt = {-1,PRESS_END};
 volatile static S32		eventsReg = 0;
 
 static Loop appLoop = 

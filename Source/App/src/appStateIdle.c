@@ -15,13 +15,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 static SttRet btnPressed(BtnEvent btnEvt);
-State sttIde =
-{
-		.onTimeTick = NULL,
-		.btn_pressed =btnPressed,
-		.nextState = NULL,
-		.prevtState = NULL
-};
+State sttIde;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 static SttRet btnPressed(BtnEvent btnEvt)
@@ -42,6 +36,10 @@ static SttRet btnPressed(BtnEvent btnEvt)
 /* Public functions ---------------------------------------------------------*/
 int appStateInit(void)
 {
+	sttIde.onTimeTick = NULL;
+	sttIde.btn_pressed =btnPressed;
+	sttIde.nextState = NULL;
+	sttIde.prevtState = NULL;
 	middStateInit(&sttIde);
 	return SUCCESS;
 }

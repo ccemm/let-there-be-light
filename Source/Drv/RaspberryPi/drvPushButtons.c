@@ -64,7 +64,7 @@ S32 drvButtonsInit(ClickCallback cBack)
 {
 	S32 retVal = SUCCESS;
 
-	if(gpioSetMode(17, PI_INPUT)<0 )
+	if(gpioSetMode(BTN_1_PIN, PI_INPUT)<0 )
 	{
 		retVal =  FAILURE;
 	}

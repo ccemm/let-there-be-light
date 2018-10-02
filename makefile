@@ -1,7 +1,8 @@
 
 CC=arm-linux-gnueabihf-g++.exe 
-CFLAGS=-Wall -pthread -I. -I./Source/Drv/inc/ #./Source/App/inc #-I./
-SRC_FILES=./Source/App/raspmain.c ./Source/Drv/RaspberryPi/drvDebug.c ./Source/Drv/RaspberryPi/drvLeds.c ./Source/Drv/RaspberryPi/drvRingBuffer.c   ./Source/Drv/RaspberryPi/drvPushButtons.c
+CFLAGS=-Wall -pthread -I. -I./Source/Drv/inc/ -I./Source/Midd/inc/ -I./Source/App/inc #-I./
+SRC_FILES=./Source/App/main.c ./Source/Drv/RaspberryPi/drvPlatForm.c ./Source/Drv/RaspberryPi/drvDebug.c ./Source/Drv/RaspberryPi/drvLeds.c ./Source/Drv/RaspberryPi/drvRingBuffer.c ./Source/Drv/RaspberryPi/drvPushButtons.c ./Source/Drv/RaspberryPi/drvTimers.c ./Source/Drv/RaspberryPi/drvUART.c ./Source/App/src/appStateIdle.c  ./Source/Midd/middStateMngr.c   
+
 LDIR=../Libs/rasplibs
 
 DEPS=hellomake.h

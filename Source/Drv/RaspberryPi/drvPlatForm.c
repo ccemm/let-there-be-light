@@ -6,6 +6,7 @@
  *
 *******************************************************************************/
 #include "drvPlatform.h"
+#include "pigpio.h"
 /* Private define ------------------------------------------------------------*/
 /* Private typedef -----------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -21,6 +22,9 @@
 S32 drvInitPlatform(void)
 {
 	S32 retVal = SUCCESS;
-
+	if(gpioInitialise()<0)
+	{
+		retVal = FAILURE;
+	}
 	return retVal;
 }

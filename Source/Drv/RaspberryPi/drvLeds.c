@@ -53,7 +53,7 @@ static void heartBeatLed(void)
 S32 drvLedsInit(void)
 {
 	S32 retVal = SUCCESS;
-	if(gpioInitialise() <0)
+	if(gpioSetMode(LED_PIN, PI_INPUT)<0)
 	{
 		retVal = FAILURE;
 	}
@@ -115,7 +115,6 @@ int drvLedSetBlinkMode(LedBlinkMode blnkMode)
 void drvLedOnTimeTick(void)
 {
 	static int cntrTimePeriod =0;
-#if 0
 	if( gBlinkMode != LED_BLNK_NONE)
 	{
 		cntrTimePeriod++;
@@ -125,5 +124,4 @@ void drvLedOnTimeTick(void)
 			heartBeatLed();
 		}
 	}
-#endif
 }

@@ -1,7 +1,7 @@
 
 CC=arm-linux-gnueabihf-g++.exe 
-CFLAGS=-Wall -pthread -I.   #./Source/App/inc #-I./
-SRC_FILES=./Source/App/raspmain.c
+CFLAGS=-Wall -pthread -I. -I./Source/Drv/inc/ #./Source/App/inc #-I./
+SRC_FILES=./Source/App/raspmain.c ./Source/Drv/RaspberryPi/drvDebug.c ./Source/Drv/RaspberryPi/drvLeds.c ./Source/Drv/RaspberryPi/drvRingBuffer.c   ./Source/Drv/RaspberryPi/drvPushButtons.c
 LDIR=../Libs/rasplibs
 
 DEPS=hellomake.h
@@ -21,10 +21,5 @@ ltbl_rasp: $(SRC_FILES)
 
 clean: 	
 		rm	-f ./ltbl
-		#rm -f ./Source/App/src/*.o
-		#rm -f ./Source/App/*.o
-		#rm -f ./Drv/RaspberryPi/*.o
-		#rm -f ./Drv/Midd/*.o
-		#rm *.o
 		
 		

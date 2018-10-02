@@ -13,9 +13,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#if PART_TM4C123GH6PM
 #include "hw_memmap.h"
 #include "tm4c123gh6pm.h"
 #include "sysctl.h"
+#endif
 
 #define UART_BUFFER_SIZE		1024		// UART Rcv and Transmit Buffer Size
 #define RING_BUFFER_MAX  		2		// Max Ring Buffer Number

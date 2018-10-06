@@ -51,6 +51,7 @@ typedef enum _EventsSys
 /* Private function prototypes -----------------------------------------------*/
 static void loopTimeTick(void);
 static void loopOnBtnEvt(BtnEvent bntEvt);
+static void loopOnUART0Rcv(void);
 /* Private variables ---------------------------------------------------------*/
 static TimerNum timer1Ms = INV_TIMER_NUM;
 static BtnEvent lastBntEvt = {-1,PRESS_END};
@@ -59,7 +60,7 @@ volatile static S32		eventsReg = 0;
 static Loop appLoop = 
 {
 		.timeTickMs= loopTimeTick,
-		.uart0OnDataRcv = NULL,
+		.uart0OnDataRcv = loopOnUART0Rcv,
 		.uart1OnDataRcv = NULL,
 		.onButtonEvent = loopOnBtnEvt,
 };
@@ -76,13 +77,20 @@ static void clicCallBack(BtnEvent btnEvt)
 	SET_EVT_FLAG(eventsReg,EVT_BTN);
 }
 
-static void uartRcvCallBack()
+static U8 uartRcvBuf[256];
+static void loopOnUART0Rcv(void)
 {
-	U8 buf[128];
 	U32 len =0;
 	// ToDo: Echo Back For Now 
-	drvUARTRcv(buf, &len);
-	drvUARTSend(buf,len);
+	drvUARTRcv(uartRcvBuf, &len);
+	uartRcvBuf[len]=0;
+	drvUARTSend(uartRcvBuf,len);
+
+}
+
+void uartRcvCallBack()
+{
+	SET_EVT_FLAG(eventsReg,EVT_UART_0);
 }
 
 static S32 initTimer(void)
@@ -136,6 +144,7 @@ static void loopTimeTick(void)
 {
 	drvButtonsScan();
 	drvLedOnTimeTick();
+	drvIsRcvDataAvailable();
 	middStateProcess(STT_EVT_TICK,NULL);
 }
 
@@ -186,9 +195,7 @@ int main(void)
 {
 	initDrivers();
 	appStateInit();
-
 	drvUARTInit(uartRcvCallBack);
-
 	while(1)
 	{
 		loopApp(&appLoop);

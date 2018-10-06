@@ -77,7 +77,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Source/App/raspmain.c|Source/Drv/RaspberryPi|Source/Drv/TivaPlatform/tm4c123gh6pm.cmd|Source/Drv/TivaPlatform/tm4c123gh6pm_startup_ccs.c|tm4c123gh6pm_startup_ccs.c|tm4c123gh6pm.cmd|lm3s1110_startup_ccs.c|lm3s1110.cmd" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Source/Drv/RaspberryPi|Source/App/raspmain.c|Source/Drv/TivaPlatform/tm4c123gh6pm.cmd|Source/Drv/TivaPlatform/tm4c123gh6pm_startup_ccs.c|tm4c123gh6pm_startup_ccs.c|tm4c123gh6pm.cmd|lm3s1110_startup_ccs.c|lm3s1110.cmd" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

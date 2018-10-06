@@ -11,7 +11,7 @@ SRC_FILES=./Source/App/main.c \
 		./Source/Drv/RaspberryPi/drvRingBuffer.c \
 		./Source/Drv/RaspberryPi/drvPushButtons.c \
 		./Source/Drv/RaspberryPi/drvTimers.c \
-		./Source/Drv/RaspberryPi/drvUART.c \
+		./Source/Drv/RaspberryPi/drvUart.c \
 		./Source/App/src/appStateIdle.c  \
 		./Source/Midd/middStateMngr.c   
 

@@ -8,39 +8,52 @@
 #include "drvUart.h"
 #include "drvRingBuffer.h"
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+
+
 /* Private define ------------------------------------------------------------*/
 /* Private typedef -----------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static UartRcvDataAvlblCallBack dataRcvCallBack = NULL;
+static int uart0Fd = -1;
 
 /* Private function prototypes -----------------------------------------------*/
-static RingBufHndl rcvBufHandle;
-static RingBufHndl trnBufHandle;
-
-static U8  rcvRingBuf[UART_BUFFER_SIZE];	// Rcv Buffer
-static U8  trnRingBuf[UART_BUFFER_SIZE];	// Trn Buffer
-
 /* Private functions ---------------------------------------------------------*/
 static void initUART0(void)
 {
-	// ToDo:
-}
+	struct termios options;
 
-static void uartTrnInt(void)
-{
-	// ToDo:
-}
+	uart0Fd = open( "/dev/serial0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
+	if (uart0Fd == -1)
+	{
+		//ERROR - CAN'T OPEN SERIAL PORT
+		printf("Error - Unable to open UART.  Ensure it is not in use by another application\n");
+	}
 
-static void uartRcvInt(void)
-{
-	//ToDo:
-}
-
-/* Public functions ---------------------------------------------------------*/
-void UART0IntHandler(void)
-{
-	// ToDo:
+	//CONFIGURE THE UART
+	//The flags (defined in /usr/include/termios.h - see http://pubs.opengroup.org/onlinepubs/007908799/xsh/termios.h.html):
+	//	Baud rate:- B1200, B2400, B4800, B9600, B19200, B38400, B57600, B115200, B230400, B460800, B500000, B576000, B921600, B1000000, B1152000, B1500000, B2000000, B2500000, B3000000, B3500000, B4000000
+	//	CSIZE:- CS5, CS6, CS7, CS8
+	//	CLOCAL - Ignore modem status lines
+	//	CREAD - Enable receiver
+	//	IGNPAR = Ignore characters with parity errors
+	//	ICRNL - Map CR to NL on input (Use for ASCII comms where you want to auto correct end of line characters - don't use for bianry comms!)
+	//	PARENB - Parity enable
+	//	PARODD - Odd parity (else even)
+	tcgetattr(uart0Fd, &options);
+	options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;		//<Set baud rate
+	options.c_iflag = IGNPAR;
+	options.c_oflag = 0;
+	options.c_lflag = 0;
+	tcflush(uart0Fd, TCIFLUSH);
+	tcsetattr(uart0Fd, TCSANOW, &options);
 }
 
 /**
@@ -51,27 +64,9 @@ void UART0IntHandler(void)
 int drvUARTInit(UartRcvDataAvlblCallBack rcvCallBack)
 {
 	int retVal = SUCCESS;
-#if 0
-	RingBuffInfo rngBufInfo;
-
-	// Init Rcv Ring Buffer
-	rngBufInfo.buffer =  &rcvRingBuf[0];
-	rngBufInfo.num_elem = UART_BUFFER_SIZE;
-	rngBufInfo.size_elem = sizeof(U8);
-
-	// Init Rcv Ring Buffer
-	drvRingBufferInit(&rcvBufHandle,&rngBufInfo );
-
-	// Init Transmit Ring Buffer
-	// since other variable are same with rcv buffer, just change actual buffer
-	rngBufInfo.buffer =  &trnRingBuf[0];
-	drvRingBufferInit(&trnBufHandle,&rngBufInfo );
-
-
-	dataRcvCallBack = rcvCallBack;
 
 	initUART0();
-#endif
+	dataRcvCallBack = rcvCallBack;
 	return retVal;
 }
 /**
@@ -83,21 +78,15 @@ int drvUARTInit(UartRcvDataAvlblCallBack rcvCallBack)
 int drvUARTSend(U8* data, U32 len)
 {
 	int retVal = SUCCESS;
-#if 0
-	int i =0;
 
-	for(i =0; i<len; i++)
+	if (uart0Fd != -1)
 	{
-		if(drvRingBufferPut(trnBufHandle, (const void*)&data[i]) != SUCCESS)
+		int count = write(uart0Fd, data, len);		//Filestream, bytes to write, number of bytes to write
+		if (count < 0)
 		{
-			// Buffer Over Flow
 			retVal = FAILURE;
-			break;
 		}
 	}
-
-	uartTrnInt();
-#endif
 	return retVal;
 }
 /**
@@ -109,21 +98,38 @@ int drvUARTSend(U8* data, U32 len)
 int drvUARTRcv(U8* dest, U32* len)
 {
 	int  retVal = SUCCESS;
-#if 0
-	U8* ptr =dest;
+	// Read up to 255 characters from the port if they are there
+	*len = read(uart0Fd, (void*)dest, 255);
 
-	// ToDo: Add A Get All Function To Ring Buffer
-	while(drvRingBufferGet(rcvBufHandle, ptr) == SUCCESS)
-	{
-		ptr++;
-	}
-
-	*len = ptr - dest;
-
-	if(*len == 0)
+	if(*len <0)
 	{
 		retVal = FAILURE;
 	}
-#endif
+
 	return retVal;
+}
+
+void drvIsRcvDataAvailable(void)
+{
+	// ToDo: Manage Select structure from a single file for all Events
+	//		 Think which one is better with thread or without thread
+	//		 For now current implementation is enough for our purpose
+	int retVal = SUCCESS;
+	fd_set rfds;
+	struct timeval tv;
+
+	if(uart0Fd > -1)
+	{
+		tv.tv_sec = 0;
+		tv.tv_usec = 50; /*10000;*/
+		// Configure sellect
+		/* Watch stdin (fd 0) to see when it has input. */
+		FD_ZERO(&rfds);
+		FD_SET(uart0Fd, &rfds);
+		retVal = select(uart0Fd+1, &rfds, NULL, NULL, &tv);
+		if(retVal > 0)
+		{
+			dataRcvCallBack();
+		}
+	}
 }

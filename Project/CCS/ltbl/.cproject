@@ -244,7 +244,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Source/Drv/TivaPlatform/tm4c123gh6pm.lds|Source/Drv/TivaPlatform/tm4c123gh6pm_startup_ccs_gcc.c|lm3s1110_startup_ccs.c|lm3s1110.cmd|tm4c123gh6pm.lds|tm4c123gh6pm_startup_ccs_gcc.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Source/Drv/RaspberryPi|Source/Drv/TivaPlatform/tm4c123gh6pm.lds|Source/Drv/TivaPlatform/tm4c123gh6pm_startup_ccs_gcc.c|lm3s1110_startup_ccs.c|lm3s1110.cmd|tm4c123gh6pm.lds|tm4c123gh6pm_startup_ccs_gcc.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

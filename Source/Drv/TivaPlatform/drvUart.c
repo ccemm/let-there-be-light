@@ -236,7 +236,7 @@ int drvUARTRcv(U8* dest, U32* len)
 	return retVal;
 }
 
-void drvIsRcvDataAvailable(void)
+void drvUARTIsRcvAvail(void)
 {
 	return FAILURE;
 }

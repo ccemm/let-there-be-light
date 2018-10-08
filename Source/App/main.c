@@ -137,6 +137,11 @@ static S32 initDrivers(void)
 		retVal = drvButtonsInit(clicCallBack);
 	}
 
+	if(retVal == SUCCESS)
+	{
+		retVal = drvUARTInit(uartRcvCallBack);
+	}
+
 	return retVal;
 }
 
@@ -144,7 +149,7 @@ static void loopTimeTick(void)
 {
 	drvButtonsScan();
 	drvLedOnTimeTick();
-	drvIsRcvDataAvailable();
+	drvUARTIsRcvAvail();
 	middStateProcess(STT_EVT_TICK,NULL);
 }
 
@@ -195,7 +200,6 @@ int main(void)
 {
 	initDrivers();
 	appStateInit();
-	drvUARTInit(uartRcvCallBack);
 	while(1)
 	{
 		loopApp(&appLoop);

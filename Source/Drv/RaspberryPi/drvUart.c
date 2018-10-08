@@ -109,7 +109,7 @@ int drvUARTRcv(U8* dest, U32* len)
 	return retVal;
 }
 
-void drvIsRcvDataAvailable(void)
+void drvUARTIsRcvAvail(void)
 {
 	// ToDo: Manage Select structure from a single file for all Events
 	//		 Think which one is better with thread or without thread

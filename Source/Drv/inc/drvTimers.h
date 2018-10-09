@@ -10,8 +10,7 @@
 
 #include "drvConfig.h"
 
-#define MAX_TIMERS			(10)
-#define MIN_PERIOD_MS		(1)
+#define MAX_TIMERS			(3)
 #define	INV_TIMER_NUM		(0xFFFFFFFF)
 
 typedef int TimerNum;

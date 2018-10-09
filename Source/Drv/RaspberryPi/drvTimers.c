@@ -12,6 +12,7 @@
 
 
 /* Private define ------------------------------------------------------------*/
+#define MIN_PERIOD_MS		(10)
 /* Private typedef -----------------------------------------------------------*/
 typedef struct _Timer
 {
@@ -39,7 +40,7 @@ void Timer0(void*)
 	{
 		if( (timers[i].callBack != NULL) && (timers[i].isRunnig))
 		{
-			timers[i].cntr+=10;
+			timers[i].cntr+=1;
 			if(timers[i].cntr >= timers[i].timeOut)
 			{
 				if(timers[i].isContiniues == FALSE)

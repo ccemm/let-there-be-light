@@ -13,6 +13,12 @@
 #define MAX_TIMERS			(3)
 #define	INV_TIMER_NUM		(0xFFFFFFFF)
 
+#if PART_TM4C123GH6PM
+#define MIN_PERIOD_MS		(1)
+#else
+#define MIN_PERIOD_MS		(10)
+#endif
+
 typedef int TimerNum;
 typedef void (*TimerCalback)(void);
 

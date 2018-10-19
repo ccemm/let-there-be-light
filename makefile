@@ -1,6 +1,6 @@
 
 CC=arm-linux-gnueabihf-g++.exe 
-CFLAGS=-Wall -pthread -I. -I./Source/Drv/inc/ -I./Source/Midd/inc/ -I./Source/App/inc #-I./
+CFLAGS=-Wall -pthread -O0 -I. -I./Source/Drv/inc/ -I./Source/Midd/inc/ -I./Source/App/inc #-I./
 
 # ToDo: Simplfy Make File
 
@@ -12,6 +12,7 @@ SRC_FILES=./Source/App/main.c \
 		./Source/Drv/RaspberryPi/drvPushButtons.c \
 		./Source/Drv/RaspberryPi/drvTimers.c \
 		./Source/Drv/RaspberryPi/drvUart.c \
+		./Source/Drv/RaspberryPi/drvTcpServer.c \
 		./Source/App/src/appStateIdle.c  \
 		./Source/Midd/middStateMngr.c   
 

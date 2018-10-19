@@ -67,7 +67,7 @@ void Timer0BIntHandler(void)
 	{
 		if( (timers[i].callBack != NULL) && (timers[i].isRunnig))
 		{
-			timers[i].cntr++;
+			timers[i].cntr+=MIN_PERIOD_MS;
 			if(timers[i].cntr >= timers[i].timeOut)
 			{
 				if(timers[i].isContiniues == FALSE)

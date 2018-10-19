@@ -13,6 +13,7 @@
 #include "drvPshButtons.h"
 #include "drvUart.h"
 #include "drvDebug.h"
+#include "drvTcpServer.h"
 
 #if PART_TM4C123GH6PM
 #include "hw_types.h"
@@ -69,6 +70,7 @@ static Loop appLoop =
 static void timer1MsCallBack(void)
 {
 	SET_EVT_FLAG(eventsReg,EVT_TIME_TICK);
+
 }
 
 static void clicCallBack(BtnEvent btnEvt)
@@ -109,7 +111,7 @@ static S32 initTimer(void)
 
 	if(retVal == SUCCESS)
 	{
-		retVal = drvTimerStart(timer1Ms,1,TRUE);
+		retVal = drvTimerStart(timer1Ms,MIN_PERIOD_MS,TRUE);
 	}
 
 	return retVal;
@@ -194,12 +196,25 @@ static void loopApp(Loop* loop)
 }
 
 
-/* Public functions ---------------------------------------------------------*/
 
+void tcpRcvCallback(unsigned char* data, int len)
+{
+	data[len] = '\0';
+	drvTcpServerSendToClient(data, len);
+
+	drvLedSetBlinkMode(LED_BLNK_NONE);
+	drvLedOff();
+	return;
+}
+
+/* Public functions ---------------------------------------------------------*/
 int main(void)
 {
 	initDrivers();
 	appStateInit();
+
+	drvTcpServerStartListen(51717, tcpRcvCallback);
+
 	while(1)
 	{
 		loopApp(&appLoop);

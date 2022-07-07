@@ -9,7 +9,19 @@
 #ifndef _GENERIC_TYPES_H
 #define _GENERIC_TYPES_H
 
+#define ST_PLATFORM    1
+
+#if !ST_PLATFORM
+
 #include "stdint.h"
+
+#endif 
+
+#define BIT_GET(x,y)    (x&(1<<y))>>y
+#define BIT_SET(x,y)    {x=(x|(1<<y));}
+#define BIT_RESET(x,y)  {x=(x&((1<<y));}
+
+
 
 #define S32				int
 #define U32				unsigned int

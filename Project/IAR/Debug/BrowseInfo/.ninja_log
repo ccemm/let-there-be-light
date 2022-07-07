@@ -1,0 +1,24 @@
+# ninja log v5
+2	227	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvPlatForm.xcl	7fee77e7edac0a4
+14	246	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvDebug.xcl	5e9f793615cb96f6
+8	260	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvLeds.xcl	78bd8e99656d7717
+17	278	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvPushButtons.xcl	7d06725871bc69b1
+235	514	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvTcpServer.xcl	efd5c3ab528082fe
+256	626	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvUart.xcl	e48ad0e03e019274
+269	638	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvTimers.xcl	12d60902b8ead815
+530	656	6789037187762856	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvTcpServer.pbi	f4f34534f4b8e232
+287	683	6789037180000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvRingBuffer.xcl	4621a6bfeca656b5
+647	724	6789037188467359	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvDebug.pbi	b8397df4b56e4e52
+661	733	6789037188541939	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvPushButtons.pbi	38965fb18310bd8
+691	776	6789037188944761	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvPlatForm.pbi	93f360665d7ca02d
+728	811	6789037189343818	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvRingBuffer.pbi	c2be269d582d515e
+785	854	6789037189792370	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvUart.pbi	2952e570d72191a8
+815	871	6789037189942415	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvTimers.pbi	5661373c6047fbd1
+859	879	6789037190027953	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/ltbl_part1.pbi	6460000c2990247f
+634	886	6789037190048665	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/Drv/ST/drvLeds.pbi	32b585fa0e6e5611
+737	941	6789037190000000	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/main.xcl	e2fb3d62af4bbb08
+890	957	6789037190698768	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/ltbl_part0.pbi	38c09b7ab2d1fa0
+954	1037	6789037191534488	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/main.pbi	c3a82b48eb4987ca
+1043	1076	6789037192028132	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/ltbl_part2.pbi	c289ddee2c6d390c
+1083	1134	6789037192521594	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/ltbl.pbd	b9735452d34e0f4b
+1143	2034	6789037201234210	C:/Users/casper/Desktop/Projects/let-there-be-light/Project/IAR/Debug/BrowseInfo/ltbl.pbw	ff3f65fab09f2fcf

@@ -6,16 +6,15 @@
 #include "stm32l100xc.h"
 //typedef  void(*ClickCallback)(BtnEvent evt);
 
+
 int main()
 {
-  drvLedsInit();
-  
-  
-  while(1)
-  {
-    drvLedToggle();
-  }    
+    drvLedsInit();
     
+    while(1)
+    {
+        drvLedToggle();  
+    }    
     
     return 0;
 }

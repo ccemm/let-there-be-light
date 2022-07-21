@@ -60,13 +60,13 @@ static void heartBeatLed(void)
 S32 drvLedsInit(void)
 {
 	S32 retVal = SUCCESS;
-	// Enable the GPIO-C port that is used for the on-board LED.
+    // Enable the GPIO-C port that is used for the on-board LED. // Bit-2= GPIO-C Enabe //bit 16 = CRC module enable
     RCC->AHBENR|=0x00008004;
-	
-    //SysCtlPeripheralEnable(LPAD_RGB_PERIPHERAL);
 
-	// Configure Led Pins As Out Put
-    GPIOC->MODER=0x55555555;
+    // Clear Pins IO Select Bits 
+    GPIOC->MODER&=(~0x00014000);
+    // Configure Led Pins As Out Put
+    GPIOC->MODER|=0x00014000; 
 
 	return retVal;
 }

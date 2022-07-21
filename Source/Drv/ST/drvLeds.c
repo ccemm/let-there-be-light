@@ -13,6 +13,7 @@
 /* Private define ------------------------------------------------------------*/
 
 #define LPAD_BLUELED_PIN		8 //GPIO_PIN_1
+#define LPAD_GREENLED_PIN		9 //GPIO_PIN_1
 #define LPAD_RGB_PORTBASE		GPIOC_BASE
 
 #define LPAD_BLUELED_ON()		{BIT_SET(GPIOC->BSRR, LPAD_BLUELED_PIN) ;}

@@ -10,13 +10,11 @@
 
 #include "genericTypes.h"
 
-#if !ST_PLATFORM
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
 
-#endif
 
 #if PART_TM4C123GH6PM
 #include "hw_memmap.h"
